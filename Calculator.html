@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcultor</title>
+</head>
+<body ng-app="myApp">
+
+<div >
+    <form ng-controller='StartUpController'>
+        Starting: <input ng-model="funding.startingEstimate">
+        Recommendation: {{funding.needed}}
+    </form>
+</div>
+
+<script src="angular.js"></script>
+<script>
+
+    var myAppModule = angular.module('myApp',[]);
+
+    myAppModule.controller('StartUpController', function ($scope) {
+
+        $scope.funding = {startingEstimate: 0};
+
+        $scope.computeNeeded = function () {
+            $scope.funding.needed = $scope.funding.startingEstimate *10;
+        };
+
+        $scope.$watch('funding.startingEstimate', computeNeeded);
+    });
+</script>
+</body>
+</html>
